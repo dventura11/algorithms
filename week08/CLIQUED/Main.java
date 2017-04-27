@@ -39,14 +39,6 @@ public class Main {
       cities = new HashMap<Integer, Long>();
       vertexs = new PriorityQueue<PathNode>();
       graph = new HashMap<Integer, Map<Integer, Integer>>();
-      for (int i = 0; i < n; i++ ) {
-        Map<Integer,Integer> paths = new HashMap<Integer,Integer>();
-        for (int j = 0; i < k && j < k ; j++ ) {
-          if ( i == j) continue;
-          paths.put(j, x);
-        }
-        graph.put(i,paths);
-      }
       while ( m-- > 0 ) {
         line = in.readLine().split(" ");
         a = Integer.parseInt(line[0]);
@@ -54,6 +46,8 @@ public class Main {
         c = Integer.parseInt(line[2]);
         a--;
         b--;
+        if ( ! graph.containsKey(a) ) graph.put(a, new HashMap<Integer,Integer>());
+        if ( ! graph.containsKey(b) ) graph.put(b, new HashMap<Integer,Integer>());
         graph.get(a).put(b, c);
         graph.get(b).put(a, c);
       }
