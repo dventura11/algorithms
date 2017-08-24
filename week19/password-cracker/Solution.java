@@ -71,25 +71,20 @@ public class Solution {
   }
 
   public String isPossible(String pass, TrieNode root) {
-    return isPossible(pass, root, new HashMap<String, String>());
+    return isPossible(pass, root, new HashSet<Integer>());
   }
 
-  public String isPossible(String pass, TrieNode root, Map<String, String> cache) {
-    if (cache.containsKey(pass)) {
-      return cache.get(pass);
-    }
-    if (pass.isEmpty()) {
-      return "";
-    }
+  public String isPossible(String pass, TrieNode root, Set<Integer> cache) {
+    if (cache.contains(pass.length())) return ERROR;
+    if (pass.isEmpty()) return "";
     Set<String> set = root.findIn(pass);
     for (String result: set) {
       String next = isPossible(pass.substring(result.length()), root, cache);
       if ( next.equals(ERROR) ) continue;
       result += " " + next;
-      cache.put(pass, result);
       return result;
     }
-    cache.put(pass, ERROR);
+    cache.add(pass.length());
     return ERROR;
   }
 }
