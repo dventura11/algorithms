@@ -72,6 +72,16 @@ public class Main {
         max = Math.max(max, office[x][y][3]);
       }
     }
+
+    for (i = 0; i < 3; i++) {
+      for (y = 0; y < n; y++) {
+        for (x = 0; x < m; x++) {
+          System.out.print(office[x][y][i] + ",");
+        }
+        System.out.println("");
+      }
+      System.out.println("=====================");
+    }
     System.out.println(max);
     in.close();
   }
